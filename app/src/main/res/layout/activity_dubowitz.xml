@@ -353,7 +353,7 @@
 
                     <!-- ComboBox (Spinner) -->
                     <Spinner
-                        android:id="@+id/spinnerPL"
+                        android:id="@+id/spinnerPlantaresDubowits"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:spinnerMode="dropdown"
@@ -376,24 +376,19 @@
                     android:orientation="vertical"
                     android:padding="12dp">
 
-                    <!-- Título o Guía -->
                     <TextView
-                        android:id="@+id/tvTituloAuricular"
-                        android:layout_width="wrap_content"
+                        android:id="@+id/tvTituloGenitales"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="Forma del pabellón auricular"
+                        android:text="Genitales"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         android:textColor="#115E73"
                         android:layout_marginBottom="8dp" />
 
-                    <!-- ComboBox (Spinner) -->
-                    <Spinner
-                        android:id="@+id/spinnerAuricular"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:spinnerMode="dropdown"
-                        android:prompt="@string/prompt_forma_auricular" />
+                    <Spinner android:id="@+id/spinnerGenitales"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
                 </LinearLayout>
 
 

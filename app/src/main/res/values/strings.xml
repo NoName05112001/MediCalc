@@ -46,5 +46,78 @@
         <item>Surcos en toda la planta</item>
     </string-array>
 
+    <!-- Test Dubowitz -->
+
+    <!-- Opciones para genitales masculinos -->
+    <string-array name="genitales_masculinos">
+        <item>Seleccionar...</item>
+        <item>Testículos no descendidos</item>
+        <item>Testículos en canal inguinal</item>
+        <item>Testículos descendidos</item>
+        <item>Escroto liso</item>
+        <item>Escroto con pliegues</item>
+    </string-array>
+
+    <!-- Opciones para genitales femeninos -->
+    <string-array name="genitales_femeninos">}
+        <item>Seleccionar...</item>
+        <item>Clítoris prominente</item>
+        <item>Labios menores prominentes</item>
+        <item>Labios mayores pequeños</item>
+        <item>Labios mayores cubriendo menores</item>
+        <item>Labios mayores cubriendo completamente</item>
+    </string-array>
+
+    <!-- Opciones para Postura -->
+    <string-array name="postura_opciones">
+        <item>Seleccionar...</item>
+        <item>Extensión completa de extremidades</item>
+        <item>Ligera flexión de piernas</item>
+        <item>Flexión moderada de piernas</item>
+        <item>Flexión marcada de piernas</item>
+        <item>Flexión completa de piernas y brazos</item>
+    </string-array>
+
+    <!-- Opciones para Ángulo Poplíteo -->
+    <string-array name="angulo_popliteo_opciones">
+        <item>Seleccionar...</item>
+        <item>Más de 180°</item>
+        <item>180°</item>
+        <item>160°</item>
+        <item>130°</item>
+        <item>110°</item>
+        <item>90°</item>
+        <item>Menos de 90°</item>
+    </string-array>
+
+    <!-- Opciones para Tono -->
+    <string-array name="tono_opciones">
+        <item>Seleccionar...</item>
+        <item>Flácido</item>
+        <item>Algo de tono</item>
+        <item>Tono moderado</item>
+        <item>Buen tono</item>
+        <item>Tono excelente</item>
+    </string-array>
+
+    <!-- Opciones para Piel -->
+    <string-array name="piel_opciones">
+        <item>Seleccionar...</item>
+        <item>Muy fina, gelatinosa</item>
+        <item>Fina y lisa</item>
+        <item>Lisa</item>
+        <item>Ligeramente descamativa</item>
+        <item>Descamativa o agrietada</item>
+    </string-array>
+
+    <!-- Opciones para Pliegues Plantares -->
+    <string-array name="pliegues_plantares_opciones">
+        <item>Seleccionar...</item>
+        <item>Sin pliegues</item>
+        <item>Algunas líneas en la parte anterior</item>
+        <item>Líneas en la mitad anterior</item>
+        <item>Líneas en más de la mitad anterior</item>
+        <item>Pliegues en toda la planta</item>
+    </string-array>
 
 </resources>
