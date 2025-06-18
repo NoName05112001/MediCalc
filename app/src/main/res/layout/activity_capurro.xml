@@ -28,228 +28,239 @@
         android:textSize="18dp" />
 
   </FrameLayout>
-
-  <LinearLayout
-
+  <ScrollView
       android:layout_width="0dp"
       android:layout_height="0dp"
-      android:orientation="vertical"
+      android:fillViewport="true"
       app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
       app:layout_constraintEnd_toEndOf="parent"
       app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+      app:layout_constraintTop_toBottomOf="@id/frameLayout">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_margin="0dp"
-        app:cardCornerRadius="0dp"
-        app:cardElevation="0dp"
-        app:cardBackgroundColor="@android:color/white">
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical">
-
-        <TextView
-            android:id="@+id/textView5"
-            android:layout_width="match_parent"
-            android:layout_height="25dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
-            android:layout_marginEnd="15dp"
-            android:layout_marginBottom="5dp"
-            android:text="Test de Capurro"
-            android:textColor="#115E73"
-            android:textSize="18dp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="45dp"
-            android:layout_marginStart="15dp"
-            android:layout_marginEnd="15dp"
-            android:text="Estimación de edad gestacional del recién nacido basada en 5 características físicas observables."
-            android:textColor="#258997" />
-      </LinearLayout>
-    </androidx.cardview.widget.CardView>
-
-
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="8dp">
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="12dp">
-
-        <!-- Título o Guía -->
-        <TextView
-            android:id="@+id/tvTituloAuricular"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Forma del pabellón auricular"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#115E73"
-            android:layout_marginBottom="8dp" />
-
-        <!-- ComboBox (Spinner) -->
-        <Spinner
-            android:id="@+id/spinnerAuricular"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:spinnerMode="dropdown"
-            android:prompt="@string/prompt_forma_auricular" />
-      </LinearLayout>
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="8dp">
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="12dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Tamaño de la glándula mamaria"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:textColor="#115E73"
-            android:layout_marginBottom="8dp"/>
-
-        <Spinner
-            android:id="@+id/spinnerGlandulaMamaria"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:entries="@array/opciones_glandula_mamaria"
-            android:spinnerMode="dropdown"/>
-      </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="8dp">
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:orientation="vertical"
-          android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Formación del pezón"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="5dp" />
-
-        <Spinner
-            android:id="@+id/spinnerPezon"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-      </LinearLayout>
-
-
-
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="8dp">
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Textura de la piel"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="5dp" />
-
-        <Spinner
-            android:id="@+id/spinnerPiel"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-      </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        app:cardCornerRadius="8dp">
-
-      <LinearLayout
-          android:layout_width="match_parent"
-          android:layout_height="wrap_content"
-          android:orientation="vertical"
-          android:padding="10dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Pliegues plantares"
-            android:textStyle="bold"
-            android:textSize="16sp"
-            android:layout_marginBottom="5dp" />
-
-        <Spinner
-            android:id="@+id/spinnerPlantares"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-      </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-    <Button
-        android:id="@+id/btnCalcularEdad"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginStart="15dp"
-        android:layout_marginEnd="15dp"
-        android:text="Calcular Edad Gestacional"
-        android:backgroundTint="@color/bgLogin"
-        android:textColor="@android:color/white"
-        android:textStyle="bold" />
-  </LinearLayout>
+        android:orientation="vertical">
+
+      <!-- Contenido desplazable -->
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_margin="0dp"
+            app:cardCornerRadius="0dp"
+            app:cardElevation="0dp"
+            app:cardBackgroundColor="@android:color/white">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="25dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginBottom="5dp"
+                android:text="Test de Capurro"
+                android:textColor="#115E73"
+                android:textSize="18dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="wrap_content"
+                android:layout_height="45dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:text="Estimación de edad gestacional del recién nacido basada en 5 características físicas observables."
+                android:textColor="#258997" />
+          </LinearLayout>
+        </androidx.cardview.widget.CardView>
+
+
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="8dp">
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="12dp">
+
+            <!-- Título o Guía -->
+            <TextView
+                android:id="@+id/tvTituloAuricular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Forma del pabellón auricular"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#115E73"
+                android:layout_marginBottom="8dp" />
+
+            <!-- ComboBox (Spinner) -->
+            <Spinner
+                android:id="@+id/spinnerAuricular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:spinnerMode="dropdown"
+                android:prompt="@string/prompt_forma_auricular" />
+          </LinearLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="8dp">
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="12dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tamaño de la glándula mamaria"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:textColor="#115E73"
+                android:layout_marginBottom="8dp"/>
+
+            <Spinner
+                android:id="@+id/spinnerGlandulaMamaria"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/opciones_glandula_mamaria"
+                android:spinnerMode="dropdown"/>
+          </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="8dp">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Formación del pezón"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp" />
+
+            <Spinner
+                android:id="@+id/spinnerPezon"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+          </LinearLayout>
+
+
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="8dp">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Textura de la piel"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp" />
+
+            <Spinner
+                android:id="@+id/spinnerPiel"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+          </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            app:cardCornerRadius="8dp">
+
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:orientation="vertical"
+              android:padding="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Pliegues plantares"
+                android:textStyle="bold"
+                android:textSize="16sp"
+                android:layout_marginBottom="5dp" />
+
+            <Spinner
+                android:id="@+id/spinnerPlantares"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+          </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/btnCalcularEdad"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginEnd="15dp"
+            android:text="Calcular Edad Gestacional"
+            android:backgroundTint="@color/bgLogin"
+            android:textColor="@android:color/white"
+            android:textStyle="bold" />
+      </LinearLayout>
+
+
+
+  </ScrollView>
 
 
 

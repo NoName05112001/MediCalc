@@ -44,5 +44,12 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val linearMadurezCutanea = findViewById<LinearLayout>(R.id.linearMadurezCutanea)
+        linearMadurezCutanea.setOnClickListener {
+            val intent = Intent(this, MadurezCutaneaActivity::class.java)
+            startActivity(intent)
+        }
+
+
     }
 }

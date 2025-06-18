@@ -238,6 +238,9 @@
                     tools:srcCompat="@tools:sample/avatars" />
 
                 <LinearLayout
+                    android:id="@+id/linearMadurezCutanea"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_width="294dp"
                     android:layout_height="match_parent"
                     android:background="@color/white"

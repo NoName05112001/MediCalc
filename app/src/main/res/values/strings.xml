@@ -120,4 +120,49 @@
         <item>Pliegues en toda la planta</item>
     </string-array>
 
+
+    <!-- Madurez Cutanea-->
+
+    <string-array name="textura_piel_opciones">
+        <item>Seleccionar...</item>
+        <item>Muy pegajosa, gelatinosa</item>
+        <item>Pegajosa, friable</item>
+        <item>Lisa, delgada</item>
+        <item>Lisa, mediana</item>
+        <item>Lisa, gruesa</item>
+        <item>Arrugada, gruesa</item>
+    </string-array>
+
+    <string-array name="grosor_piel_opciones">
+        <item>Seleccionar...</item>
+        <item>Transparente</item>
+        <item>Muy delgada</item>
+        <item>Delgada</item>
+        <item>Mediana</item>
+        <item>Gruesa</item>
+        <item>Muy gruesa</item>
+    </string-array>
+
+    <string-array name="transparencia_piel_opciones">
+        <item>Seleccionar...</item>
+        <item>Venas y vasos claramente visibles</item>
+        <item>Venas y contornos vasculares visibles</item>
+        <item>Venas visibles</item>
+        <item>Venas poco visibles</item>
+        <item>Venas apenas visibles</item>
+        <item>No se ven venas</item>
+    </string-array>
+
+    <string-array name="descamacion_piel_opciones">
+        <item>Seleccionar...</item>
+        <item>Sin descamación</item>
+        <item>Descamación visible mínima</item>
+        <item>Descamación leve</item>
+        <item>Descamación moderada</item>
+        <item>Descamación extensa</item>
+        <item>Descamación severa con grietas</item>
+    </string-array>
+
+
+
 </resources>
