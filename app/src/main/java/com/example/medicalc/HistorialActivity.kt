@@ -19,8 +19,8 @@ class HistorialActivity : AppCompatActivity() {
             finish()
 
         }
-
     }
+
 
 
 }
