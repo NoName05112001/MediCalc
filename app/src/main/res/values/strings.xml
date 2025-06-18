@@ -1,0 +1,50 @@
+<resources>
+    <string name="app_name">MediCalc</string>
+
+    <string name="prompt_forma_auricular">Selecciona la forma del pabellón auricular</string>
+
+    // test capurro
+
+    <string-array name="opciones_auricular">
+        <item>Seleccionar...</item>
+        <item>Pabellón plano, sin incurvación</item>
+        <item>Pabellón parcialmente incurvado en borde superior</item>
+        <item>Pabellón totalmente incurvado</item>
+    </string-array>
+
+    <string-array name="opciones_glandula_mamaria">
+        <item>Seleccionar...</item>
+        <item>No palpable</item>
+        <item>Palpable menor de 5mm</item>
+        <item>Palpable entre 5–10mm</item>
+        <item>Palpable mayor de 10mm</item>
+    </string-array>
+
+    <string-array name="opciones_pezon">
+        <item>Seleccionar...</item>
+        <item>Apenas visible sin areola</item>
+        <item>Visible con areola plana</item>
+        <item>Visible con areola punteada, borde no elevado</item>
+        <item>Visible con areola punteada, borde elevado</item>
+    </string-array>
+
+    <string-array name="opciones_piel">
+        <item>Seleccionar...</item>
+        <item>Muy fina, gelatinosa</item>
+        <item>Fina y lisa</item>
+        <item>Lisa, áreas descamativas</item>
+        <item>Descamación superficial y/o grietas</item>
+        <item>Gruesa, grietas profundas</item>
+    </string-array>
+
+    <string-array name="opciones_plantares">
+        <item>Seleccionar...</item>
+        <item>Sin pliegues</item>
+        <item>Marcas mal definidas en la mitad anterior</item>
+        <item>Marcas bien definidas en la mitad anterior</item>
+        <item>Marcas en más de la mitad anterior</item>
+        <item>Surcos en toda la planta</item>
+    </string-array>
+
+
+</resources>
