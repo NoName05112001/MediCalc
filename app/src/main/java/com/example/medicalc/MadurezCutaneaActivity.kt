@@ -151,11 +151,14 @@ class MadurezCutaneaActivity : AppCompatActivity() {
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         alertDialog.show()
 
+        val tvTitulo = dialogView.findViewById<TextView>(R.id.tvTitulo)
         val tvResultado = dialogView.findViewById<TextView>(R.id.tvResultadoEdad)
         val btnGuardar = dialogView.findViewById<Button>(R.id.btnGuardar)
         val btnCerrar = dialogView.findViewById<Button>(R.id.btnCerrar)
 
+        tvTitulo.text = "Resultado de la Evaluación de Madurez Cutánea"
         tvResultado.text = resultadoTexto
+
         btnGuardar.backgroundTintList = ContextCompat.getColorStateList(this, R.color.bgLogin)
         btnCerrar.backgroundTintList = ContextCompat.getColorStateList(this, R.color.bgLogin)
 
@@ -167,4 +170,5 @@ class MadurezCutaneaActivity : AppCompatActivity() {
             alertDialog.dismiss()
         }
     }
+
 }
