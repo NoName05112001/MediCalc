@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="24dp"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_rounded"
+    android:elevation="8dp">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="!Guardado¡"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#115E73"
+        android:paddingBottom="12dp" />
+
+    <TextView
+        android:id="@+id/tvResultadoEdad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resultado guardado en el historial."
+        android:textSize="16sp"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="24dp" />
+
+
+    <Button
+        android:id="@+id/btnCerrar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:layout_gravity="end" />
+</LinearLayout>
