@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:padding="24dp"
+    android:orientation="vertical"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_dialog_rounded"
+    android:elevation="8dp">
+
+    <!-- Título -->
+    <TextView
+        android:id="@+id/tvTituloLiggins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resultado de Evaluación Respiratoria"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#115E73"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="12dp" />
+
+    <!-- Puntaje total -->
+    <TextView
+        android:id="@+id/tvPuntajeTotal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntaje total: 12"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="8dp" />
+
+    <!-- Interpretación -->
+    <TextView
+        android:id="@+id/tvInterpretacion"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interpretación: Dificultad respiratoria moderada"
+        android:textSize="16sp"
+        android:textColor="@android:color/black"
+        android:layout_gravity="center_horizontal"
+        android:paddingBottom="24dp" />
+
+    <!-- Botón Guardar -->
+    <Button
+        android:id="@+id/btnGuardarLiggins"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bgLogin"
+        android:text="Guardar"
+        android:textColor="@android:color/white" />
+
+    <!-- Botón Cerrar -->
+    <Button
+        android:id="@+id/btnCerrarLiggins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:layout_gravity="end"
+        android:layout_marginTop="16dp" />
+</LinearLayout>

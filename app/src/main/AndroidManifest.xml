@@ -13,6 +13,9 @@
         android:theme="@style/Theme.MediCalc"
         tools:targetApi="31">
         <activity
+            android:name=".LigginsYHowieActivity"
+            android:exported="false" />
+        <activity
             android:name=".MadurezCutaneaActivity"
             android:exported="false" />
         <activity

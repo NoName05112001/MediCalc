@@ -304,6 +304,9 @@
                     android:maxWidth="60dp"/>
 
                 <LinearLayout
+                    android:id="@+id/linearLigginsyHowie"
+                    android:clickable="true"
+                    android:focusable="true"
                     android:layout_width="294dp"
                     android:layout_height="match_parent"
                     android:background="@color/white"
