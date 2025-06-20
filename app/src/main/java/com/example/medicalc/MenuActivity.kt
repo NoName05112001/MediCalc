@@ -50,6 +50,11 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        val linearligyhowie = findViewById<LinearLayout>(R.id.linearLigginsyHowie)
+        linearligyhowie.setOnClickListener {
+            val intent = Intent(this, LigginsYHowieActivity::class.java)
+            startActivity(intent)
+        }
 
     }
 }
