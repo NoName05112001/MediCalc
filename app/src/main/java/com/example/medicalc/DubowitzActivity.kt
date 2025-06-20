@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class DubowitzActivity : AppCompatActivity() {
+class DubowitzActivity : BaseAuthActivity() {
 
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var tvTituloGenitales: TextView
