@@ -137,10 +137,10 @@ class CapurroActivity : AppCompatActivity() {
 
     private fun mostrarResultadoDialog(semanas: Int) {
         val dialogView = layoutInflater.inflate(R.layout.dialog_resultado_capurro, null)
-        val dialogBuilder = AlertDialog.Builder(this)
+        val alertDialog = AlertDialog.Builder(this)
             .setView(dialogView)
             .setCancelable(false)
-        val alertDialog = dialogBuilder.create()
+            .create()
         alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         alertDialog.show()
 
@@ -152,12 +152,78 @@ class CapurroActivity : AppCompatActivity() {
         btnGuardar.backgroundTintList = ContextCompat.getColorStateList(this, R.color.bgLogin)
         btnCerrar.backgroundTintList = ContextCompat.getColorStateList(this, R.color.bgLogin)
 
+        btnCerrar.setOnClickListener {
+            alertDialog.dismiss()
+        }
+
         btnGuardar.setOnClickListener {
-            Toast.makeText(this, "Resultado guardado (por implementar)", Toast.LENGTH_SHORT).show()
+            alertDialog.dismiss()
+            mostrarDialogoNombre(semanas)
+        }
+    }
+    private fun mostrarDialogoNombre(semanas: Int) {
+        val nombreDialogView = layoutInflater.inflate(R.layout.nombre_paciente, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(nombreDialogView)
+            .setCancelable(false)
+            .create()
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        alertDialog.show()
+
+        val etNombre = nombreDialogView.findViewById<EditText>(R.id.etNombreRecienNacido)
+        val btnGuardar = nombreDialogView.findViewById<Button>(R.id.btnGuardar)
+        val btnCancelar = nombreDialogView.findViewById<Button>(R.id.btnCancelar)
+        val btnCerrar = nombreDialogView.findViewById<Button>(R.id.btnCerrar)
+
+        // Aplicar color
+        val colorFondo = ContextCompat.getColorStateList(this, R.color.bgLogin)
+        btnGuardar.backgroundTintList = colorFondo
+        btnCancelar.backgroundTintList = colorFondo
+        btnCerrar.backgroundTintList = colorFondo
+
+        btnGuardar.setOnClickListener {
+            val nombre = etNombre.text.toString().trim()
+            if (nombre.isEmpty()) {
+                Toast.makeText(this, "Por favor ingresa el nombre del recién nacido.", Toast.LENGTH_SHORT).show()
+            } else {
+                alertDialog.dismiss()
+                mostrarDialogoConfirmacion(nombre, semanas)
+            }
+        }
+
+        btnCancelar.setOnClickListener {
+            alertDialog.dismiss()
         }
 
         btnCerrar.setOnClickListener {
             alertDialog.dismiss()
         }
     }
+
+
+    private fun mostrarDialogoConfirmacion(nombre: String, semanas: Int) {
+        val confirmDialogView = layoutInflater.inflate(R.layout.guardado, null)
+        val alertDialog = AlertDialog.Builder(this)
+            .setView(confirmDialogView)
+            .setCancelable(false)
+            .create()
+        alertDialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        alertDialog.show()
+
+        val tvEdad = confirmDialogView.findViewById<TextView>(R.id.tvResultadoEdad)
+        val btnCerrar = confirmDialogView.findViewById<Button>(R.id.btnCerrar)
+
+        tvEdad.text = "Resultado de $nombre guardado en el historial.\nEdad gestacional: $semanas semanas"
+
+        // Aplicar color
+        btnCerrar.backgroundTintList = ContextCompat.getColorStateList(this, R.color.bgLogin)
+
+        btnCerrar.setOnClickListener {
+            alertDialog.dismiss()
+        }
+    }
+
+
+
+
 }

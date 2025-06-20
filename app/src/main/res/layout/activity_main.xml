@@ -132,7 +132,11 @@
                     android:layout_width="86dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/capurro"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp"/>
 
                 <LinearLayout
                     android:id="@+id/linearCapurro"
@@ -183,7 +187,11 @@
                     android:layout_width="86dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/dubowitz"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp" />
 
                 <LinearLayout
                     android:id="@+id/linearBallard"
@@ -235,7 +243,11 @@
                     android:layout_width="86dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/madurez_cutanea"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp" />
 
                 <LinearLayout
                     android:id="@+id/linearMadurezCutanea"
@@ -285,7 +297,11 @@
                     android:layout_width="86dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    tools:srcCompat="@tools:sample/avatars" />
+                    android:src="@drawable/liggins_howie"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:maxHeight="60dp"
+                    android:maxWidth="60dp"/>
 
                 <LinearLayout
                     android:layout_width="294dp"
