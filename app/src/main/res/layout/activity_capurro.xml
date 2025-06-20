@@ -28,6 +28,7 @@
         android:textSize="18dp" />
 
   </FrameLayout>
+
   <ScrollView
       android:layout_width="0dp"
       android:layout_height="0dp"
