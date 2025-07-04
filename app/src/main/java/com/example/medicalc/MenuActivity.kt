@@ -62,12 +62,19 @@ class MenuActivity : BaseAuthActivity() {
             startActivity(intent)
         }
     }
+
     /**
      * Función para obtener y mostrar el nombre del usuario logueado.
      */
     private fun displayUserName() {
         userNameTextView.text = "usuario"
         val currentUserUid = authManager.getCurrentUserUid()
+
+        val linearligyhowie = findViewById<LinearLayout>(R.id.linearLigginsyHowie)
+        linearligyhowie.setOnClickListener {
+            val intent = Intent(this, LigginsYHowieActivity::class.java)
+            startActivity(intent)
+        }
 
         if (currentUserUid != null) {
             // Lanza una coroutine para llamar a la función suspend de AuthManager

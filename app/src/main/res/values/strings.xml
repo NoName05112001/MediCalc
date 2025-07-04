@@ -162,7 +162,61 @@
         <item>Descamación extensa</item>
         <item>Descamación severa con grietas</item>
     </string-array>
+    // test liggins y howie
 
+    <string-array name="opciones_esfuerzo_respiratorio">
+        <item>Seleccionar...</item>
+        <item>Respiración espontánea y regular (0)</item>
+        <item>Respiración espontánea con leve irregularidad (1)</item>
+        <item>Respiración laboriosa, uso de músculos accesorios (2)</item>
+        <item>Respiración muy laboriosa, marcado esfuerzo (3)</item>
+        <item>Respiración extremadamente dificultosa o ausente (4)</item>
+    </string-array>
+
+    <string-array name="opciones_retraccion_costal">
+        <item>Seleccionar...</item>
+        <item>Sin retracción (0)</item>
+        <item>Retracción intercostal leve (1)</item>
+        <item>Retracción intercostal moderada (2)</item>
+        <item>Retracción intercostal y subcostal marcada (3)</item>
+        <item>Retracción severa con tiraje universal (4)</item>
+    </string-array>
+
+    <string-array name="opciones_quejido_respiratorio">
+        <item>Seleccionar...</item>
+        <item>Sin quejido (0)</item>
+        <item>Quejido audible solo con estetoscopio (1)</item>
+        <item>Quejido audible sin estetoscopio (2)</item>
+        <item>Quejido constante y audible (3)</item>
+        <item>Quejido severo con cada respiración (4)</item>
+    </string-array>
+
+    <string-array name="opciones_cianosis">
+        <item>Seleccionar...</item>
+        <item>Sin cianosis, coloración rosada (0)</item>
+        <item>Cianosis periférica leve (manos y pies) (1)</item>
+        <item>Cianosis periférica moderada (2)</item>
+        <item>Cianosis central (labios y lengua) (3)</item>
+        <item>Cianosis generalizada severa (4)</item>
+    </string-array>
+
+    <string-array name="opciones_frecuencia_respiratoria">
+        <item>Seleccionar...</item>
+        <item>30-60 respiraciones por minuto (normal) (0)</item>
+        <item>60-80 respiraciones por minutos (1)</item>
+        <item>80-100 respiraciones por minuto (2)</item>
+        <item>+ 100 respiraciones por minuto (3)</item>
+        <item>- 30 o respiracion irregular severa  (4)</item>
+    </string-array>
+
+    <string-array name="opciones_capacidad_de_succión">
+        <item>Seleccionar...</item>
+        <item>Succión vigorosa y coordinada (0)</item>
+        <item>Succión presente pero débil (1)</item>
+        <item>Succión intermitente, no coordinada (2)</item>
+        <item>Succión muy débil o ausente (3)</item>
+        <item>Incapaz de succionar (4)</item>
+    </string-array>
 
 
 </resources>
