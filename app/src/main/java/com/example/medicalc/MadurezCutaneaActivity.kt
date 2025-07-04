@@ -10,7 +10,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 
-class MadurezCutaneaActivity : AppCompatActivity() {
+class MadurezCutaneaActivity : BaseAuthActivity() {
 
     private val spinnerIdsAndArrays = listOf(
         Pair(R.id.spinnerTexturaPiel, R.array.textura_piel_opciones),

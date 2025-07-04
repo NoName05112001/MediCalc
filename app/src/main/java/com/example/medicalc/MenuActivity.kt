@@ -4,13 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageView
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.TextView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
-class MenuActivity : AppCompatActivity() {
+class MenuActivity : BaseAuthActivity() {
+    private lateinit var userNameTextView: TextView // Declarar el TextView
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+
         setContentView(R.layout.activity_main)
 
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
@@ -19,9 +24,16 @@ class MenuActivity : AppCompatActivity() {
             insets
         }
 
+        // Conectar el TextView del layout
+        userNameTextView = findViewById(R.id.userNameText)
+
+        // --- Lógica para mostrar el nombre del usuario ---
+        displayUserName()
+
         val btnLogout = findViewById<ImageView>(R.id.btnLogout)
         btnLogout.setOnClickListener {
             val intent = Intent(this, MainActivity::class.java)
+            authManager.signOut()
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
             startActivity(intent)
             finish()
@@ -49,6 +61,14 @@ class MenuActivity : AppCompatActivity() {
             val intent = Intent(this, MadurezCutaneaActivity::class.java)
             startActivity(intent)
         }
+    }
+
+    /**
+     * Función para obtener y mostrar el nombre del usuario logueado.
+     */
+    private fun displayUserName() {
+        userNameTextView.text = "usuario"
+        val currentUserUid = authManager.getCurrentUserUid()
 
         val linearligyhowie = findViewById<LinearLayout>(R.id.linearLigginsyHowie)
         linearligyhowie.setOnClickListener {
@@ -56,5 +76,14 @@ class MenuActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
+        if (currentUserUid != null) {
+            // Lanza una coroutine para llamar a la función suspend de AuthManager
+            lifecycleScope.launch {
+                val userProfile = authManager.getUserProfile(currentUserUid)
+                if (userProfile != null && userProfile.name.isNotEmpty()) {
+                    userNameTextView.text = "${userProfile.name}"
+                }
+            }
+        }
     }
 }
