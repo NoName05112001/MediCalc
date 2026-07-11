@@ -10,8 +10,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class LigginsYHowieActivity : AppCompatActivity() {
+
+    private val authManager = AuthManager()
+    private var editDocumentId: String? = null
+    private var editNombrePaciente: String? = null
 
     private val spinnerIdsAndArrays = listOf(
         Pair(R.id.spinnerEsfuerzoRespiratorio, R.array.opciones_esfuerzo_respiratorio),
@@ -33,6 +39,28 @@ class LigginsYHowieActivity : AppCompatActivity() {
             insets
         }
 
+        editDocumentId = intent.getStringExtra("EDIT_DOCUMENT_ID")
+        editNombrePaciente = intent.getStringExtra("EDIT_NOMBRE_PACIENTE")
+
+        spinnerIdsAndArrays.forEach { (spinnerId, arrayId) ->
+            cargarSpinner(spinnerId, arrayId)
+        }
+
+        if (editDocumentId != null) {
+            val campos = mapOf(
+                R.id.spinnerEsfuerzoRespiratorio to "esfuerzoRespiratorio",
+                R.id.spinnerRetraccionCostal to "retraccionCostal",
+                R.id.spinnerQuejidoRespiratorio to "quejidoRespiratorio",
+                R.id.spinnerCianosis to "cianosis",
+                R.id.spinnerFrecuenciaRespiratoria to "frecuenciaRespiratoria",
+                R.id.spinnerCapacidaddesucción to "capacidadSuccion"
+            )
+            campos.forEach { (spinnerId, key) ->
+                val pos = intent.getIntExtra("CAMPO_$key", 0)
+                if (pos > 0) findViewById<Spinner>(spinnerId).setSelection(pos)
+            }
+        }
+
         val btnInicio = findViewById<Button>(R.id.btn_inicio)
         btnInicio.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
@@ -44,10 +72,6 @@ class LigginsYHowieActivity : AppCompatActivity() {
         btnHistorial.setOnClickListener {
             val intent = Intent(this, HistorialActivity::class.java)
             startActivity(intent)
-        }
-
-        spinnerIdsAndArrays.forEach { (spinnerId, arrayId) ->
-            cargarSpinner(spinnerId, arrayId)
         }
 
         val btnCalcular = findViewById<Button>(R.id.btnEvaluarMadurezPulmonar)
@@ -142,13 +166,31 @@ class LigginsYHowieActivity : AppCompatActivity() {
         btnCancelar.backgroundTintList = color
         btnCerrar.backgroundTintList = color
 
+        editNombrePaciente?.let { etNombre.setText(it) }
+
         btnGuardar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
             if (nombre.isEmpty()) {
                 Toast.makeText(this, "Por favor ingresa el nombre del recién nacido.", Toast.LENGTH_SHORT).show()
             } else {
                 dialog.dismiss()
-                mostrarDialogoConfirmacionLiggins(nombre, puntaje, interpretacion)
+                lifecycleScope.launch {
+                    val campos = mapOf(
+                        "esfuerzoRespiratorio" to findViewById<Spinner>(R.id.spinnerEsfuerzoRespiratorio).selectedItemPosition,
+                        "retraccionCostal" to findViewById<Spinner>(R.id.spinnerRetraccionCostal).selectedItemPosition,
+                        "quejidoRespiratorio" to findViewById<Spinner>(R.id.spinnerQuejidoRespiratorio).selectedItemPosition,
+                        "cianosis" to findViewById<Spinner>(R.id.spinnerCianosis).selectedItemPosition,
+                        "frecuenciaRespiratoria" to findViewById<Spinner>(R.id.spinnerFrecuenciaRespiratoria).selectedItemPosition,
+                        "capacidadSuccion" to findViewById<Spinner>(R.id.spinnerCapacidaddesucción).selectedItemPosition
+                    )
+                    val docId = editDocumentId
+                    if (docId != null) {
+                        authManager.actualizarCalculo(docId, "Liggins y Howie", nombre, "Puntaje: $puntaje — $interpretacion", campos)
+                    } else {
+                        authManager.guardarCalculo("Liggins y Howie", nombre, "Puntaje: $puntaje — $interpretacion", campos)
+                    }
+                    mostrarDialogoConfirmacionLiggins(nombre, puntaje, interpretacion)
+                }
             }
         }
 

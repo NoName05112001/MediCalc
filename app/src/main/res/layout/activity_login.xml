@@ -85,6 +85,16 @@
             android:text="¿No tienes cuenta? Regístrate"
             android:textColor="@color/h1txt"/>
 
+        <Button
+            android:id="@+id/btnForgotPassword"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:backgroundTint="@color/white"
+            android:text="¿Olvidaste tu contraseña? Recuperar"
+            android:textColor="@color/h1txt"
+            android:textSize="12sp"/>
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

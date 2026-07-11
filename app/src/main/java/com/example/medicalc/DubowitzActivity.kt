@@ -8,8 +8,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class DubowitzActivity : BaseAuthActivity() {
+
+    private var editDocumentId: String? = null
+    private var editNombrePaciente: String? = null
 
     private lateinit var genderRadioGroup: RadioGroup
     private lateinit var tvTituloGenitales: TextView
@@ -31,7 +36,11 @@ class DubowitzActivity : BaseAuthActivity() {
             insets
         }
 
+        editDocumentId = intent.getStringExtra("EDIT_DOCUMENT_ID")
+        editNombrePaciente = intent.getStringExtra("EDIT_NOMBRE_PACIENTE")
+
         // Inicializar vistas
+        // (restauración de campos se hace después de setupSpinners)
         genderRadioGroup = findViewById(R.id.genderRadioGroup)
         tvTituloGenitales = findViewById(R.id.tvTituloGenitales)
         spinnerGenitales = findViewById(R.id.spinnerGenitales)
@@ -50,6 +59,27 @@ class DubowitzActivity : BaseAuthActivity() {
             updateGenitalesSection(checkedId)
         }
         updateGenitalesSection(genderRadioGroup.checkedRadioButtonId)
+
+        // Restaurar campos si venimos de edición
+        if (editDocumentId != null) {
+            val gender = intent.getIntExtra("CAMPO_gender", -1)
+            if (gender == 0) genderRadioGroup.check(R.id.radioMale)
+            else if (gender == 1) genderRadioGroup.check(R.id.radioFemale)
+
+            val spinnersEdit = mapOf(
+                spinnerPostura to "postura",
+                spinnerAnguloPopliteo to "anguloPopliteo",
+                spinnerTono to "tono",
+                spinnerPiel to "pielDubowitz",
+                spinnerPlieguesPlantares to "plieguesPlantares"
+            )
+            spinnersEdit.forEach { (spinner, key) ->
+                val pos = intent.getIntExtra("CAMPO_$key", 0)
+                if (pos > 0) spinner.setSelection(pos)
+            }
+            val posGenitales = intent.getIntExtra("CAMPO_genitales", 0)
+            if (posGenitales > 0) spinnerGenitales.setSelection(posGenitales)
+        }
 
         // Botones de navegación
         findViewById<Button>(R.id.btn_inicio).setOnClickListener {
@@ -191,13 +221,33 @@ class DubowitzActivity : BaseAuthActivity() {
         btnCancelar.backgroundTintList = colorFondo
         btnCerrar.backgroundTintList = colorFondo
 
+        editNombrePaciente?.let { etNombre.setText(it) }
+
         btnGuardar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
             if (nombre.isEmpty()) {
                 Toast.makeText(this, "Por favor ingresa el nombre del recién nacido.", Toast.LENGTH_SHORT).show()
             } else {
                 alertDialog.dismiss()
-                mostrarDialogoConfirmacion(nombre, semanas)
+                lifecycleScope.launch {
+                    val genderVal = if (genderRadioGroup.checkedRadioButtonId == R.id.radioMale) 0 else 1
+                    val campos = mapOf(
+                        "gender" to genderVal,
+                        "genitales" to spinnerGenitales.selectedItemPosition,
+                        "postura" to spinnerPostura.selectedItemPosition,
+                        "anguloPopliteo" to spinnerAnguloPopliteo.selectedItemPosition,
+                        "tono" to spinnerTono.selectedItemPosition,
+                        "pielDubowitz" to spinnerPiel.selectedItemPosition,
+                        "plieguesPlantares" to spinnerPlieguesPlantares.selectedItemPosition
+                    )
+                    val docId = editDocumentId
+                    if (docId != null) {
+                        authManager.actualizarCalculo(docId, "Dubowitz", nombre, "Edad gestacional: $semanas semanas", campos)
+                    } else {
+                        authManager.guardarCalculo("Dubowitz", nombre, "Edad gestacional: $semanas semanas", campos)
+                    }
+                    mostrarDialogoConfirmacion(nombre, semanas)
+                }
             }
         }
 

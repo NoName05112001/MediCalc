@@ -11,10 +11,10 @@
         android:id="@+id/tvTitulo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="!Guardado¡"
+        android:text="¡Guardado!"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#115E73"
+        android:textColor="@color/bgLogin"
         android:paddingBottom="12dp" />
 
     <TextView
@@ -32,5 +32,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cerrar"
+        android:backgroundTint="@color/bgLogin"
         android:layout_gravity="end" />
 </LinearLayout>

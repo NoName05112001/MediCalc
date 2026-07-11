@@ -65,6 +65,16 @@ class AuthManager {
         auth.signOut()
     }
 
+    suspend fun resetPassword(email: String): Boolean {
+        return try {
+            auth.sendPasswordResetEmail(email).await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
     /**
      * Obtiene el ID del usuario actualmente autenticado.
      * @return El UID del usuario si está autenticado, o null si no hay sesión.
@@ -93,6 +103,68 @@ class AuthManager {
         } catch (e: Exception) {
             e.printStackTrace()
             null
+        }
+    }
+
+    suspend fun guardarCalculo(tipo: String, nombrePaciente: String, resultado: String, campos: Map<String, Any> = emptyMap()): Boolean {
+        val uid = getCurrentUserUid() ?: return false
+        return try {
+            val calculo = hashMapOf(
+                "tipo" to tipo,
+                "nombrePaciente" to nombrePaciente,
+                "resultado" to resultado,
+                "fecha" to com.google.firebase.Timestamp.now(),
+                "campos" to campos
+            )
+            usersCollection.document(uid).collection("calculos").add(calculo).await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    suspend fun obtenerCalculos(): List<Map<String, Any>> {
+        val uid = getCurrentUserUid() ?: return emptyList()
+        return try {
+            val snapshot = usersCollection.document(uid).collection("calculos")
+                .orderBy("fecha", com.google.firebase.firestore.Query.Direction.DESCENDING)
+                .get().await()
+            snapshot.documents.mapNotNull { doc ->
+                doc.data?.toMutableMap()?.apply { put("_id", doc.id) }
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            emptyList()
+        }
+    }
+
+    suspend fun eliminarCalculo(documentId: String): Boolean {
+        val uid = getCurrentUserUid() ?: return false
+        return try {
+            usersCollection.document(uid).collection("calculos").document(documentId).delete().await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
+        }
+    }
+
+    suspend fun actualizarCalculo(documentId: String, tipo: String, nombrePaciente: String, resultado: String, campos: Map<String, Any> = emptyMap()): Boolean {
+        val uid = getCurrentUserUid() ?: return false
+        return try {
+            val calculo = hashMapOf(
+                "tipo" to tipo,
+                "nombrePaciente" to nombrePaciente,
+                "resultado" to resultado,
+                "fecha" to com.google.firebase.Timestamp.now(),
+                "campos" to campos
+            )
+            usersCollection.document(uid).collection("calculos").document(documentId).set(calculo).await()
+            true
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false
         }
     }
 }

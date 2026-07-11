@@ -1,13 +1,13 @@
 {
   "project_info": {
-    "project_number": "641478595399",
-    "project_id": "medicalc-5f538",
-    "storage_bucket": "medicalc-5f538.firebasestorage.app"
+    "project_number": "279937767813",
+    "project_id": "medicalc-a6319",
+    "storage_bucket": "medicalc-a6319.firebasestorage.app"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:641478595399:android:c4340bf81a86fbb2083262",
+        "mobilesdk_app_id": "1:279937767813:android:2aee07c22fe062b94b8cec",
         "android_client_info": {
           "package_name": "com.example.medicalc"
         }
@@ -15,7 +15,7 @@
       "oauth_client": [],
       "api_key": [
         {
-          "current_key": "AIzaSyBitnQ6XEGW8ENHWUifPtjHNGzFWKc-hG8"
+          "current_key": "AIzaSyAPGSj33Wr5g5k5u-hbGjstEUC6Dc6ndL4"
         }
       ],
       "services": {

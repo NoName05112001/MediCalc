@@ -14,7 +14,7 @@
         android:text="Resultado"
         android:textSize="20sp"
         android:textStyle="bold"
-        android:textColor="#115E73"
+        android:textColor="@color/bgLogin"
         android:layout_gravity="center_horizontal"
         android:paddingBottom="12dp" />
 
@@ -31,7 +31,7 @@
         android:id="@+id/btnGuardar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/bgLogin"
+        android:backgroundTint="@color/bgLogin"
         android:text="Guardar" />
 
     <Button
@@ -39,6 +39,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Cerrar"
+        android:backgroundTint="@color/bgLogin"
         android:layout_gravity="end"
         android:layout_marginTop="16dp" />
 </LinearLayout>

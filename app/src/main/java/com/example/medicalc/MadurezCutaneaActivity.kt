@@ -9,8 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class MadurezCutaneaActivity : BaseAuthActivity() {
+
+    private var editDocumentId: String? = null
+    private var editNombrePaciente: String? = null
 
     private val spinnerIdsAndArrays = listOf(
         Pair(R.id.spinnerTexturaPiel, R.array.textura_piel_opciones),
@@ -30,6 +35,26 @@ class MadurezCutaneaActivity : BaseAuthActivity() {
             insets
         }
 
+        editDocumentId = intent.getStringExtra("EDIT_DOCUMENT_ID")
+        editNombrePaciente = intent.getStringExtra("EDIT_NOMBRE_PACIENTE")
+
+        spinnerIdsAndArrays.forEach { (spinnerId, arrayId) ->
+            cargarSpinner(spinnerId, arrayId)
+        }
+
+        if (editDocumentId != null) {
+            val campos = mapOf(
+                R.id.spinnerTexturaPiel to "texturaPiel",
+                R.id.spinnerGrosorPiel to "grosorPiel",
+                R.id.spinnerTransparenciaPiel to "transparenciaPiel",
+                R.id.spinnerDescamacionPiel to "descamacionPiel"
+            )
+            campos.forEach { (spinnerId, key) ->
+                val pos = intent.getIntExtra("CAMPO_$key", 0)
+                if (pos > 0) findViewById<Spinner>(spinnerId).setSelection(pos)
+            }
+        }
+
         val btnInicio = findViewById<Button>(R.id.btn_inicio)
         btnInicio.setOnClickListener {
             val intent = Intent(this, MenuActivity::class.java)
@@ -41,11 +66,6 @@ class MadurezCutaneaActivity : BaseAuthActivity() {
         btnHistorial.setOnClickListener {
             val intent = Intent(this, HistorialActivity::class.java)
             startActivity(intent)
-        }
-
-        // Cargar los spinners
-        spinnerIdsAndArrays.forEach { (spinnerId, arrayId) ->
-            cargarSpinner(spinnerId, arrayId)
         }
 
         val btnCalcular = findViewById<Button>(R.id.btnEvaluarMadurezcutanea)
@@ -195,13 +215,29 @@ class MadurezCutaneaActivity : BaseAuthActivity() {
         btnCancelar.backgroundTintList = colorFondo
         btnCerrar.backgroundTintList = colorFondo
 
+        editNombrePaciente?.let { etNombre.setText(it) }
+
         btnGuardar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
             if (nombre.isEmpty()) {
                 Toast.makeText(this, "Por favor ingresa el nombre del recién nacido.", Toast.LENGTH_SHORT).show()
             } else {
                 alertDialog.dismiss()
-                mostrarDialogoConfirmacion(nombre, semanas)
+                lifecycleScope.launch {
+                    val campos = mapOf(
+                        "texturaPiel" to findViewById<Spinner>(R.id.spinnerTexturaPiel).selectedItemPosition,
+                        "grosorPiel" to findViewById<Spinner>(R.id.spinnerGrosorPiel).selectedItemPosition,
+                        "transparenciaPiel" to findViewById<Spinner>(R.id.spinnerTransparenciaPiel).selectedItemPosition,
+                        "descamacionPiel" to findViewById<Spinner>(R.id.spinnerDescamacionPiel).selectedItemPosition
+                    )
+                    val docId = editDocumentId
+                    if (docId != null) {
+                        authManager.actualizarCalculo(docId, "Madurez Cutánea", nombre, "Edad gestacional: $semanas semanas", campos)
+                    } else {
+                        authManager.guardarCalculo("Madurez Cutánea", nombre, "Edad gestacional: $semanas semanas", campos)
+                    }
+                    mostrarDialogoConfirmacion(nombre, semanas)
+                }
             }
         }
 

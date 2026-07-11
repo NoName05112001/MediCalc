@@ -22,6 +22,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var editTextPassword: EditText
     private lateinit var btnLogin: Button
     private lateinit var btnRegister: Button
+    private lateinit var btnForgotPassword: Button
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -54,6 +55,7 @@ class MainActivity : AppCompatActivity() {
         editTextPassword = findViewById(R.id.editTextTextPassword) // ID de la contraseña
         btnLogin = findViewById(R.id.btnLogin)
         btnRegister = findViewById(R.id.btnRegister)
+        btnForgotPassword = findViewById(R.id.btnForgotPassword)
 
         // --- Lógica de verificación inicial de sesión ---
         // Verifica si ya hay una sesión activa al iniciar la app
@@ -76,7 +78,31 @@ class MainActivity : AppCompatActivity() {
         btnRegister.setOnClickListener {
             val intent = Intent(this, RegisterActivity::class.java)
             startActivity(intent)
-            // No llamamos a finish() aquí, para que el usuario pueda volver a la pantalla de login
+        }
+
+        btnForgotPassword.setOnClickListener {
+            val email = editTextEmail.text.toString().trim()
+            if (email.isEmpty()) {
+                editTextEmail.error = "Ingresa tu email para recuperar la contraseña"
+                editTextEmail.requestFocus()
+                return@setOnClickListener
+            }
+            lifecycleScope.launch {
+                val enviado = authManager.resetPassword(email)
+                if (enviado) {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "Se envió un enlace de recuperación a $email",
+                        Toast.LENGTH_LONG
+                    ).show()
+                } else {
+                    Toast.makeText(
+                        this@MainActivity,
+                        "No se pudo enviar el correo. Verifica que el email sea correcto.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
         }
     }
 

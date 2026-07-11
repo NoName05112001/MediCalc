@@ -9,8 +9,13 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.lifecycle.lifecycleScope
+import kotlinx.coroutines.launch
 
 class CapurroActivity : BaseAuthActivity() {
+
+    private var editDocumentId: String? = null
+    private var editNombrePaciente: String? = null
 
     private val spinnerIdsAndArrays = listOf(
         Pair(R.id.spinnerAuricular, R.array.opciones_auricular),
@@ -31,6 +36,29 @@ class CapurroActivity : BaseAuthActivity() {
             insets
         }
 
+        editDocumentId = intent.getStringExtra("EDIT_DOCUMENT_ID")
+        editNombrePaciente = intent.getStringExtra("EDIT_NOMBRE_PACIENTE")
+
+        // Cargar todos los spinners
+        spinnerIdsAndArrays.forEach { (spinnerId, arrayId) ->
+            cargarSpinner(spinnerId, arrayId)
+        }
+
+        // Restaurar spinners si venimos de edición
+        if (editDocumentId != null) {
+            val campos = mapOf(
+                R.id.spinnerAuricular to "auricular",
+                R.id.spinnerGlandulaMamaria to "glandulaMamaria",
+                R.id.spinnerPezon to "pezon",
+                R.id.spinnerPiel to "piel",
+                R.id.spinnerPlantares to "plantares"
+            )
+            campos.forEach { (spinnerId, key) ->
+                val pos = intent.getIntExtra("CAMPO_$key", 0)
+                if (pos > 0) findViewById<Spinner>(spinnerId).setSelection(pos)
+            }
+        }
+
         // Botón de regresar al menú
         val btnInicio = findViewById<Button>(R.id.btn_inicio)
         btnInicio.setOnClickListener {
@@ -42,11 +70,6 @@ class CapurroActivity : BaseAuthActivity() {
         btnHistorial.setOnClickListener {
             val intent = Intent(this, HistorialActivity::class.java)
             startActivity(intent)
-        }
-
-        // Cargar todos los spinners
-        spinnerIdsAndArrays.forEach { (spinnerId, arrayId) ->
-            cargarSpinner(spinnerId, arrayId)
         }
 
         // Botón de calcular edad gestacional
@@ -181,13 +204,30 @@ class CapurroActivity : BaseAuthActivity() {
         btnCancelar.backgroundTintList = colorFondo
         btnCerrar.backgroundTintList = colorFondo
 
+        editNombrePaciente?.let { etNombre.setText(it) }
+
         btnGuardar.setOnClickListener {
             val nombre = etNombre.text.toString().trim()
             if (nombre.isEmpty()) {
                 Toast.makeText(this, "Por favor ingresa el nombre del recién nacido.", Toast.LENGTH_SHORT).show()
             } else {
                 alertDialog.dismiss()
-                mostrarDialogoConfirmacion(nombre, semanas)
+                lifecycleScope.launch {
+                    val campos = mapOf(
+                        "auricular" to findViewById<Spinner>(R.id.spinnerAuricular).selectedItemPosition,
+                        "glandulaMamaria" to findViewById<Spinner>(R.id.spinnerGlandulaMamaria).selectedItemPosition,
+                        "pezon" to findViewById<Spinner>(R.id.spinnerPezon).selectedItemPosition,
+                        "piel" to findViewById<Spinner>(R.id.spinnerPiel).selectedItemPosition,
+                        "plantares" to findViewById<Spinner>(R.id.spinnerPlantares).selectedItemPosition
+                    )
+                    val docId = editDocumentId
+                    if (docId != null) {
+                        authManager.actualizarCalculo(docId, "Capurro", nombre, "Edad gestacional: $semanas semanas", campos)
+                    } else {
+                        authManager.guardarCalculo("Capurro", nombre, "Edad gestacional: $semanas semanas", campos)
+                    }
+                    mostrarDialogoConfirmacion(nombre, semanas)
+                }
             }
         }
 
